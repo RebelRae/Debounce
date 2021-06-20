@@ -7,7 +7,8 @@
         "url": "https://github.com/RebelRae/Debounce.git"
     },
     "description": "Adjustable accessibility extension for those with hand tremors.",
-    "version": "0.0.1",
+    "icon": "images/rebel.png",
+    "version": "1.0.1",
     "engines": {
         "vscode": "^1.57.0"
     },
