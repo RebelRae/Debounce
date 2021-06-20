@@ -7,9 +7,9 @@ const vscode = require('vscode');
 function activate(context) {
     let EDITOR = vscode.window.activeTextEditor
     let DEBOUNCE_DELAY = 200
-    let PREVOIUS_MILLIS = Date.now()
-    let PREVOIUS_KEY = false
-    let ERRORS_FIXED = 0
+    let PREVIOUS_MILLIS = Date.now()
+    let PREVIOUS_KEY = false
+    let VISIT_ERRORS = 0
     let SESSION_ERRORS = 0
     let DISPLAY_FEEDBACK = true
 
@@ -34,7 +34,7 @@ function activate(context) {
     // Displays numbers of errors
     let displayErrors = vscode.commands.registerCommand('debounce.displayErrors', () => {
         if (!DISPLAY_FEEDBACK) return
-        vscode.window.showInformationMessage(`Debounce has made ${ERRORS_FIXED} corrections since editor view changed.\nDebounce has made ${SESSION_ERRORS} corrections since VSCode started.`)
+        vscode.window.showInformationMessage(`Debounce has made ${VISIT_ERRORS} corrections since editor view changed.\nDebounce has made ${SESSION_ERRORS} corrections since VSCode started.`)
     })
 
     // Enables information messages
@@ -58,13 +58,13 @@ function activate(context) {
     vscode.window.onDidChangeActiveTextEditor(() => {
         EDITOR = vscode.window.activeTextEditor
         vscode.commands.executeCommand('debounce.displayErrors')
-        ERRORS_FIXED = 0
+        VISIT_ERRORS = 0
     })
 
     vscode.workspace.onDidChangeTextDocument(event => {
         const currentMillis = Date.now()
-        if (event.contentChanges[0].text == PREVOIUS_KEY)
-            if (currentMillis - PREVOIUS_MILLIS < DEBOUNCE_DELAY)
+        if (event.contentChanges[0].text == PREVIOUS_KEY && event.contentChanges[0].text != '')
+            if (currentMillis - PREVIOUS_MILLIS < DEBOUNCE_DELAY)
                 EDITOR.edit(editBuilder => {
                     const range = new vscode.Range(
                         event.contentChanges[0].range._start._line,
@@ -72,11 +72,11 @@ function activate(context) {
                         event.contentChanges[0].range._end._line,
                         event.contentChanges[0].range._end._character + 1)
                     editBuilder.replace(range, '')
-                    ERRORS_FIXED++
+                    VISIT_ERRORS++
                     SESSION_ERRORS++
                 })
-        PREVOIUS_MILLIS = currentMillis
-        PREVOIUS_KEY = event.contentChanges[0].text
+        PREVIOUS_MILLIS = currentMillis
+        PREVIOUS_KEY = event.contentChanges[0].text
     })
 
 }

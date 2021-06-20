@@ -40,6 +40,10 @@ Settings are only adjusted via commands.
 
 # Known Issues
 
+Debounce has no current known issues.
+
+# Fixed Issues
+
 > **Debounce on backspace/delete within delay period will remove remainder of the current line since published version.**
 > Please check the [changelog](CHANGELOG.md) for expected update.(Highest Priority)
 
@@ -47,7 +51,7 @@ Settings are only adjusted via commands.
 
 Initial release. Until now I have only used it for myself. Please, feel free to request features by emailing me at [rebel@TheDeviantRebel.com](mailto:rebel@TheDeviantRebel.com)
 
-### 1.0.0
+### 1.0.2
 
 Initial release.
 

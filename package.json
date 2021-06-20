@@ -2,13 +2,18 @@
     "name": "debounce",
     "displayName": "Debounce",
     "publisher": "Debounce",
+    "author": {
+        "name": "Rebel Brown",
+        "url": "https://TheDeviantRebel.com",
+        "email": "rebel@thedeviantrebel.com"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/RebelRae/Debounce.git"
     },
     "description": "Adjustable accessibility extension for those with hand tremors.",
     "icon": "images/rebel.png",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "engines": {
         "vscode": "^1.57.0"
     },

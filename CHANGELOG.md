@@ -1,7 +1,15 @@
 # Change Log
 
-All notable changes to the "debounce" extension will be documented in this file.
+All notable changes to the Debounce extension will be documented in this file.
 
+### Version - 1.0.2
+## [Functional]
+
+- Fixed delete/backspace bug on line 66. Ignores all editor changes with empty text value.
+
+--------------------------------------------------------------------------------------------------------------------------
+
+### Version - 1.0.1
 ## [Insignificant]
 
 - Updated text in README.md to include installation instructions
